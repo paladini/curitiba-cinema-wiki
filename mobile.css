@@ -1,0 +1,56 @@
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.container { width: 748px; }
+	#slideshow { width: 748px; height: 257px; }
+	#slideshow .slide_box { width: 748px; height: 257px; }
+	#slideshow img, #slideshow iframe { width: 748px; height: 257px; }	
+	.slide_thumbs_cont img { margin-left: 13px; width: 139px; height: 70px; }
+	
+	#cont_left { width: 690px; }
+	.post_box .left { width: 440px; }
+	.post_box .left img { width: 440px; height: 250px; }
+	.post_box .left iframe { width: 440px; height: 250px; }	
+	.single_inside_content img { max-width: 100%; height: inherit; }
+	.may_like_box { margin-right: 15px; width: 220px; }
+	.may_like_box_last{ margin-right: 0; }
+	.may_like_box img,
+	.may_like_box iframe { width: 220px; height: 130px; }	
+	
+	#sidebar { display: none; }
+	.t1_search_cont input[type=text] { width: 100px; }
+	.t1_search_cont input[type=submit] {  width: 70px; }	
+	
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) { 
+	.container { width: 300px; }
+	
+	.header_top { position: static; }
+	.logo_cont { padding-top: 25px; }
+	.logo_cont img { max-width: 100%; height: inherit; }
+	.header_menu { float: none; padding: 1px 1px; }
+	.header_menu ul li a { font-size: 12px; }
+	.header_menu ul li ul { top: 25px; }
+	.header_menu ul li ul li a { font-size: 12px; }
+	.header_social { float: none; text-align: center; padding: 5px 0; }
+	#slideshow { width: 300px; height: 135px; }
+	#slideshow .slide_box { width: 300px; height: 135px; }
+	#slideshow img, #slideshow iframe { width: 300px; height: 135px; }	
+	.slide_thumbs_cont { display: none; }
+	/*.slide_thumbs_cont img { margin-left: 13px; width: 139px; height: 70px; }*/
+	
+	#cont_left { width: 300px; float: none; }
+	.post_box .left { width: 300px; float: none; }
+	.post_box .left img { width: 300px; height: 175px; }
+	.post_box .left iframe { width: 300px; height: 175px; }	
+	.post_box .right { float: none; width: 300px; padding-top: 10px; padding-bottom: 30px; }
+	.single_inside_content img { max-width: 100%; height: inherit; }
+	.single_inside_content iframe { width: 300px; height: 167px; }
+	#commentform textarea { max-width: 280px; }	
+	
+	.may_like_box { float: none; margin: 0 auto 20px; }
+	
+	#sidebar { width: 300px; float: none; }	
+	.t1_search_cont input[type=text] { width: 210px; }
+	.t1_search_cont input[type=submit] {  width: 80px; }	
+}

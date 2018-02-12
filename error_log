@@ -1,0 +1,7 @@
+[20-Oct-2017 07:55:59 America/Chicago] PHP Fatal error:  Call to undefined function get_header() in /home/cinem713/public_html/curitiba/wp-content/themes/DesignerMagRes/index.php on line 1
+[17-Jan-2018 08:11:10 America/Sao_Paulo] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20121212
+PHP    compiled with module API=20131226
+These options need to match
+ in Unknown on line 0
+[17-Jan-2018 08:11:10 America/Sao_Paulo] PHP Fatal error:  Call to undefined function get_header() in /home/cinem713/public_html/curitiba/wp-content/themes/DesignerMagRes/single-filme.php on line 1
