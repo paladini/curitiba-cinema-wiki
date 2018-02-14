@@ -216,7 +216,8 @@
 					// Termos descritores
 					$termos_descritores = pega_taxonomias(get_field('termos_descritores'));
 					$nome_dos_diretores = get_field('nome_dos_diretores');
-					$nome_da_empresa_produtora = get_field('nome_da_empresa_produtora');
+					$nome_da_empresa_produtora_pf = get_field('nome_da_empresa_produtora_pf');
+					$nome_da_empresa_produtora_pj = get_field('nome_da_empresa_produtora_pj');
 					$nome_da_empresa_distribuidora = get_field('empresa_distribuidora');
 					
 					if ( $termos_descritores != '')
@@ -228,9 +229,18 @@
 							pega_taxonomias($nome_dos_diretores) .'</p>';
 					
 					// Empresa Produtora
-					if ($nome_da_empresa_produtora)
-						echo '<p style="text-align: justify;"><b>Empresa Produtora: </b>'. 
-							pega_taxonomias($nome_da_empresa_produtora) .'</p>';
+					if ($nome_da_empresa_produtora_pf) {
+						echo '<p style="text-align: justify;"><b>Empresa Produtora: </b>'. pega_taxonomias($nome_da_empresa_produtora_pf);
+						if ($nome_da_empresa_produtora_pj) {
+							echo ', ' . pega_taxonomias($nome_da_empresa_produtora_pj);
+						}
+						echo '</p>';
+					} elseif ($nome_da_empresa_produtora_pj) {
+						echo '<p style="text-align: justify;"><b>Empresa Produtora: </b>'. pega_taxonomias($nome_da_empresa_produtora_pj) . '</p>';
+					}
+// 					if ($nome_da_empresa_produtora)
+// 						echo '<p style="text-align: justify;"><b>Empresa Produtora: </b>'. 
+// 							pega_taxonomias($nome_da_empresa_produtora) .'</p>';
 							
 					// Empresa Distribuidora
 					if ($nome_da_empresa_distribuidora)
