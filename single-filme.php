@@ -229,13 +229,13 @@
 							pega_taxonomias($nome_dos_diretores) .'</p>';
 					
 					// Empresa Produtora
-					if ($nome_da_empresa_produtora_pf) {
+					if ($nome_da_empresa_produtora_pf && (!is_wp_error($nome_da_empresa_produtora_pf))) {
 						echo '<p style="text-align: justify;"><b>Empresa Produtora: </b>'. pega_taxonomias($nome_da_empresa_produtora_pf);
-						if ($nome_da_empresa_produtora_pj) {
+						if ($nome_da_empresa_produtora_pj && (!is_wp_error($nome_da_empresa_produtora_pj))) {
 							echo ', ' . pega_taxonomias($nome_da_empresa_produtora_pj);
 						}
 						echo '</p>';
-					} elseif ($nome_da_empresa_produtora_pj) {
+					} elseif ($nome_da_empresa_produtora_pj && (!is_wp_error($nome_da_empresa_produtora_pj))) {
 						echo '<p style="text-align: justify;"><b>Empresa Produtora: </b>'. pega_taxonomias($nome_da_empresa_produtora_pj) . '</p>';
 					}
 // 					if ($nome_da_empresa_produtora)
