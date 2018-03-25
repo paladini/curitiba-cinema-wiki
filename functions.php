@@ -914,6 +914,31 @@ function my_post_title_updater( $post_id ) {
 add_action('acf/save_post', 'my_post_title_updater', 20); // Roda após o ACF salvar os dados de $_POST['fields']
 
 
+// Custom Excerpt function for Advanced Custom Fields
+function custom_field_excerpt() {
+	global $post;
+	$text = '';
+	
+	// Se for filme pega a sinopse, se não for, retorna o excerpt padrão do Wordpress.
+	if ( get_post_type() == 'filme' ) {
+		$text = get_field('sinopse');
+	} else{
+		return ds_get_excerpt('140');
+// 		return apply_filters( 'get_the_excerpt', $post->post_excerpt, $post );
+	}
+	
+	 //Replace 'your_field_name'
+	if ( '' != $text ) {
+		$text = strip_shortcodes( $text );
+		$text = apply_filters('the_content', $text);
+		$text = str_replace(']]&gt;', ']]&gt;', $text);
+		$excerpt_length = 30; // 20 words
+		$excerpt_more = apply_filters('excerpt_more', ' ' . '...');
+		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+	}
+	return apply_filters('the_excerpt', $text);
+}
+
 // Libera algumas funções de thumbnail para o post
 add_theme_support('post-thumbnails');
 add_post_type_support( 'filme', 'thumbnail' ); 
