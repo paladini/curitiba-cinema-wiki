@@ -939,6 +939,32 @@ function custom_field_excerpt() {
 	return apply_filters('the_excerpt', $text);
 }
 
+/*
+add_action( 'pre_get_posts', 'include_tags_in_search' );
+function include_tags_in_search($query){
+    if($query->is_search){
+        $terms = explode(' ', $query->get('s'));
+        $query->set('tax_query', array(
+            'relation'=>'OR',
+            array(
+                'taxonomy'=>'pessoa',
+                'field'=>'slug',
+                'terms'=>$terms
+            )
+        ));
+    }
+}
+*/
+function themeprefix_show_cpt_archives( $query ) {
+	if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+		$query->set( 'post_type', array(
+			'post', 'nav_menu_item', 'filme'
+		));
+		return $query;
+	}
+}
+add_filter( 'pre_get_posts', 'themeprefix_show_cpt_archives' );
+
 // Libera algumas funções de thumbnail para o post
 add_theme_support('post-thumbnails');
 add_post_type_support( 'filme', 'thumbnail' ); 
