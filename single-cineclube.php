@@ -210,7 +210,7 @@
 						
 													
 						echo '</p>';												
-						<?php the_content(); ?>
+						the_content(); ?>
 					</div><!--//single_inside_content-->
 	
 					<br /><br />	

@@ -922,12 +922,10 @@ function custom_field_excerpt() {
 	// Se for filme pega a sinopse, se não for, retorna o excerpt padrão do Wordpress.
 	if ( get_post_type() == 'filme' ) {
 		$text = get_field('sinopse');
-	} else{
+	} else {
 		return ds_get_excerpt('140');
-// 		return apply_filters( 'get_the_excerpt', $post->post_excerpt, $post );
 	}
 	
-	 //Replace 'your_field_name'
 	if ( '' != $text ) {
 		$text = strip_shortcodes( $text );
 		$text = apply_filters('the_content', $text);
@@ -938,6 +936,28 @@ function custom_field_excerpt() {
 	}
 	return apply_filters('the_excerpt', $text);
 }
+
+function custom_taxonomy_excerpt($term) {
+	
+	// Se for um int, pega o termo todo do banco de dados.
+	if (is_int($term)) {
+		$term = get_term($term);
+	}
+	
+	$text = '';
+	if (!(empty($term->description))) {
+		$text = $term->description;
+		$text = strip_shortcodes( $text );
+		$text = str_replace(']]&gt;', ']]&gt;', $text);
+		$excerpt_length = 30; // 20 words
+		$excerpt_more = apply_filters('excerpt_more', '' . '...');
+		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+	}
+	
+	return $text;
+}
+
+
 
 /*
 add_action( 'pre_get_posts', 'include_tags_in_search' );

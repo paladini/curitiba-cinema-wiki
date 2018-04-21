@@ -1,172 +1,1 @@
-/*
-Theme Name: Designer Magazine Responsive Theme
-Theme URI: http://www.dessign.net/designermagazinetheme
-Description: Designer Magazine Responsive Theme for WordPress is stylish, customizable, simple, and readable. Perfect for any designer creative, illustrator or graphic designer. 
-Version: 2.0
-Author: Marios Lublinski
-Author URI: http://www.dessign.net
-Tags: 2 column theme, clean, portfolio
-*/
-/* =WordPress Core
--------------------------------------------------------------- */
-.alignnone {
-    margin: 5px 20px 20px 0;
-}
-.aligncenter,
-div.aligncenter {
-    display: block;
-    margin: 5px auto 5px auto;
-}
-.alignright {
-    float:right;
-    margin: 5px 0 20px 20px;
-}
-.alignleft {
-    float: left;
-    margin: 5px 20px 20px 0;
-}
-.aligncenter {
-    display: block;
-    margin: 5px auto 5px auto;
-}
-a img.alignright {
-    float: right;
-    margin: 5px 0 20px 20px;
-}
-a img.alignnone {
-    margin: 5px 20px 20px 0;
-}
-a img.alignleft {
-    float: left;
-    margin: 5px 20px 20px 0;
-}
-a img.aligncenter {
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-.wp-caption {
-    background: #fff;
-    border: 1px solid #f0f0f0;
-    max-width: 96%; /* Image does not overflow the content area */
-    padding: 5px 3px 10px;
-    text-align: center;
-}
-.wp-caption.alignnone {
-    margin: 5px 20px 20px 0;
-}
-.wp-caption.alignleft {
-    margin: 5px 20px 20px 0;
-}
-.wp-caption.alignright {
-    margin: 5px 0 20px 20px;
-}
-.wp-caption img {
-    border: 0 none;
-    height: auto;
-    margin: 0;
-    max-width: 98.5%;
-    padding: 0;
-    width: auto;
-}
-.wp-caption p.wp-caption-text {
-    margin: 0;
-    padding: 0 4px 5px;
-}
-/* Global */
-body, div { margin: 0; padding: 0; }
-body { font-size: 14px; font-family: 'Source Sans Pro', sans-serif; color: #666; line-height: 21px;}
-a { color: #666; text-decoration: none; transition: background 0.3s ease 0s, color 0.3s ease 0s; }
-a:hover { color: #222; }
-::selection {
-	background: #9089b0; 
-	}
-::-moz-selection {
-	background: #9089b0; 
-}
-h1,h2,h3,h4,h5,p { margin: 10px 0; }
-img { border: none; }
-.left { float: left; }
-.right { float: right; }
-.clear { clear: both; }
-.container { width: 980px; margin: 0 auto; }
-/* HTML5 tags */
-header, section, footer,
-aside, nav, article, figure {
-	display: block;
-}
-/* Header */
-.header_top { background-color: #242628; position: fixed; top: 0; left: 0; width: 100%; z-index: 100; }
-.header_menu { float: left; }
-.header_menu ul { list-style-type: none; margin: 0; padding: 0; }
-.header_menu ul li { float: left; position: relative; }
-.header_menu ul li a { display: block; padding: 5px 20px; color: #8C919B; font-size: 14px; text-transform: uppercase; text-decoration: none; border-right: 1px solid #585B61; }
-.header_menu ul li.current_page_item a,
-.header_menu ul li.current-menu-item a { color: #fff; }
-.header_menu ul li.current_page_item ul li a,
-.header_menu ul li.current-menu-item ul li a { text-decoration: none; }
-.header_menu ul li:first-child a { border-left: 1px solid #585B61; }
-.header_menu ul li a:hover { color: #fff; }
-.header_menu ul li ul { position: absolute; top: 31px; left: 0; z-index: 50; display: none; }
-.header_menu ul li ul li { float: none; width: 180px; }
-.header_menu ul li ul li a { padding: 5px 10px; border-top: 1px solid #444; border-right: none; font-size: 13px; background-color: #242628; }
-.header_menu ul li ul li a:hover { color: #8C919B; background-color: #191B1C; }
-.header_menu ul li ul li:first-child a { border-top: none; }
-.header_social { float: right; padding-top: 4px; }
-.header_social img { display: inline-block; margin-left: 5px; }
-.logo_cont { padding: 57px 0 25px; }
-.logo { float: left; }
-/* Content */
-#slideshow_cont { background-color: #F9F9F9; margin-bottom: 25px; padding: 15px 10px 10px 10px; }
-#slideshow { position: relative; width: 980px; height: 350px; }
-#slideshow .slide_box { width: 980px; height: 350px; position: absolute; top: 0; left: 0; display: none; }
-#slideshow .slide_box_first { display: block; }
-#slideshow img, #slideshow iframe { width: 980px; height: 350px; }
-.slide_thumbs_cont { padding: 15px 0px 0px 0px; }
-.slide_thumbs_cont img { margin-left: 16px; display: inline-block; cursor: pointer; width: 183px; height: 90px; }
-.slide_thumbs_cont img:first-child { margin-left: 0; }
-#cont_left { float: left; width: 650px; }
-#cont_left img {float: left; }
-.post_box { margin-bottom: 20px; position: relative; }
-.post_box h3 { margin-top: 0; }
-.post_box h3 a { color: #666; text-decoration: none; padding: 2px 0px;; font-size: 24px; font-family: 'Source Sans Pro', sans-serif; font-weight: 300; line-height: 35px; }
-.post_box h3 a:hover { background-color: #222; color: #fff; }
-.post_box .left { width: 389px; }
-.post_box .left img { display: block; width: 420px; height: 240px; }
-.post_box .left iframe { width: 420px; height: 240px; }
-.post_box .right { width: 210px; }
-.post_meta { border-bottom: 1px dotted #ccc; border-top: 1px solid #444; padding: 1px 6px; font-size: 11px; color: #333; width: 200px; position: absolute; bottom: 0; right: 0; }
-.post_meta_left { float: left; }
-.post_meta_right { float: right; }
-.post_meta_right a { color: #333; text-decoration: none; }
-.post_meta_right a:hover { text-decoration: none; color: #888; }
-#commentform input[type=submit] { background-color: #161616; color: #fff; border: 1px solid #6E6E6E; padding: 3px 5px; }
-.archive_title { padding: 3px 1px; border-bottom: 1px solid #ccc; border-top: 2px solid #444;  margin-bottom: 20px; text-transform: uppercase; font-size: 16px; font-family: 'Source Sans Pro', sans-serif; font-weight: 300; }
-.next_prev_cont { padding: 25px 0; }
-.next_prev_cont .left { float: left; width: 45%; }
-.next_prev_cont .left a { display: block; background: url('images/post_prev.png') no-repeat; background-position: top left; padding-left: 25px; min-height: 30px; }
-.next_prev_cont .right { float: right; width: 45%; text-align: right; }
-.next_prev_cont .right a { display: block; background: url('images/post_next.png') no-repeat; background-position: top right; padding-right: 25px;  min-height: 30px; }
-h1.single_title { margin-top: 0; font-size: 24px; font-family: 'Source Sans Pro', sans-serif; font-weight: 300;}
-.you_may_like { background-color: #222; color: #fff; padding: 1px 10px; font-size: 14px; margin-top: 15px; margin-bottom: 15px; }
-.may_like_box { float: left; margin-right: 17px; width: 205px; }
-.may_like_box_last{ margin-right: 0; }
-.may_like_box img,
-.may_like_box iframe { width: 205px; height: 120px; }
-.may_like_box h3 { font-weight: normal; font-size: 14px; }
-.may_like_box h3 a:hover { text-decoration: none; background-color: #222; color: #fff; }
-/* Sidebar */
-#sidebar { width: 270px; float: right; }
-.side_box { margin-bottom: 25px; }
-.side_box p { padding: 0 10px; }
-h3.side_title { border-bottom: 1px dotted #ccc; border-top: 2px solid #444;   padding: 3px 3px; color: #333; font-size: 18px; margin: 0 0 10px; font-weight: 300; }
-.side_box ul { list-style-type: none; margin: 0; padding: 0; }
-.side_box ul li a { padding: 7px 3px; border-bottom: 1px solid #eee; display: block; }
-.side_box ul li a:hover { text-decoration: none;  color: #222; }
-.t1_search_cont input[type=text], .t1_search_cont input[type=submit] { box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box; height: 24px; font-family: 'Source Sans Pro', sans-serif, arial; }
-.t1_search_cont input[type=text] { width: 185px; }
-.t1_search_cont input[type=submit] { border: none; background-color: #252628; color: #90939C; width: 80px; }
-/* Footer */
-#footer { padding: 10px 0; background-color: #242628; text-align: right; margin-top: 25px; }
+/*Theme Name: Designer Magazine Responsive ThemeTheme URI: http://www.dessign.net/designermagazinethemeDescription: Designer Magazine Responsive Theme for WordPress is stylish, customizable, simple, and readable. Perfect for any designer creative, illustrator or graphic designer. Version: 2.0Author: Marios LublinskiAuthor URI: http://www.dessign.netTags: 2 column theme, clean, portfolio*//* =WordPress Core-------------------------------------------------------------- *//* CUSTOM CSS BY paladini */.container-search {   border: 1px solid #DDDDDD;   width: 420px;   height: 240px;   max-width: 420px !important;   position: relative;}.tag-search {   float: left;   position: absolute;   left: 0px;   top: 0px;   z-index: 1000;   background-color: #92AD40;   padding: 5px;   color: #FFFFFF;   font-weight: bold;}.alignnone {    margin: 5px 20px 20px 0;}.aligncenter,div.aligncenter {    display: block;    margin: 5px auto 5px auto;}.alignright {    float:right;    margin: 5px 0 20px 20px;}.alignleft {    float: left;    margin: 5px 20px 20px 0;}.aligncenter {    display: block;    margin: 5px auto 5px auto;}a img.alignright {    float: right;    margin: 5px 0 20px 20px;}a img.alignnone {    margin: 5px 20px 20px 0;}a img.alignleft {    float: left;    margin: 5px 20px 20px 0;}a img.aligncenter {    display: block;    margin-left: auto;    margin-right: auto}.wp-caption {    background: #fff;    border: 1px solid #f0f0f0;    max-width: 96%; /* Image does not overflow the content area */    padding: 5px 3px 10px;    text-align: center;}.wp-caption.alignnone {    margin: 5px 20px 20px 0;}.wp-caption.alignleft {    margin: 5px 20px 20px 0;}.wp-caption.alignright {    margin: 5px 0 20px 20px;}.wp-caption img {    border: 0 none;    height: auto;    margin: 0;    max-width: 98.5%;    padding: 0;    width: auto;}.wp-caption p.wp-caption-text {    margin: 0;    padding: 0 4px 5px;}/* Global */body, div { margin: 0; padding: 0; }body { font-size: 14px; font-family: 'Source Sans Pro', sans-serif; color: #666; line-height: 21px;}a { color: #666; text-decoration: none; transition: background 0.3s ease 0s, color 0.3s ease 0s; }a:hover { color: #222; }::selection {	background: #9089b0; 	}::-moz-selection {	background: #9089b0; }h1,h2,h3,h4,h5,p { margin: 10px 0; }img { border: none; }.left { float: left; }.right { float: right; }.clear { clear: both; }.container { width: 980px; margin: 0 auto; }/* HTML5 tags */header, section, footer,aside, nav, article, figure {	display: block;}/* Header */.header_top { background-color: #242628; position: fixed; top: 0; left: 0; width: 100%; z-index: 100; }.header_menu { float: left; }.header_menu ul { list-style-type: none; margin: 0; padding: 0; }.header_menu ul li { float: left; position: relative; }.header_menu ul li a { display: block; padding: 5px 20px; color: #8C919B; font-size: 14px; text-transform: uppercase; text-decoration: none; border-right: 1px solid #585B61; }.header_menu ul li.current_page_item a,.header_menu ul li.current-menu-item a { color: #fff; }.header_menu ul li.current_page_item ul li a,.header_menu ul li.current-menu-item ul li a { text-decoration: none; }.header_menu ul li:first-child a { border-left: 1px solid #585B61; }.header_menu ul li a:hover { color: #fff; }.header_menu ul li ul { position: absolute; top: 31px; left: 0; z-index: 50; display: none; }.header_menu ul li ul li { float: none; width: 180px; }.header_menu ul li ul li a { padding: 5px 10px; border-top: 1px solid #444; border-right: none; font-size: 13px; background-color: #242628; }.header_menu ul li ul li a:hover { color: #8C919B; background-color: #191B1C; }.header_menu ul li ul li:first-child a { border-top: none; }.header_social { float: right; padding-top: 4px; }.header_social img { display: inline-block; margin-left: 5px; }.logo_cont { padding: 57px 0 25px; }.logo { float: left; }/* Content */#slideshow_cont { background-color: #F9F9F9; margin-bottom: 25px; padding: 15px 10px 10px 10px; }#slideshow { position: relative; width: 980px; height: 350px; }#slideshow .slide_box { width: 980px; height: 350px; position: absolute; top: 0; left: 0; display: none; }#slideshow .slide_box_first { display: block; }#slideshow img, #slideshow iframe { width: 980px; height: 350px; }.slide_thumbs_cont { padding: 15px 0px 0px 0px; }.slide_thumbs_cont img { margin-left: 16px; display: inline-block; cursor: pointer; width: 183px; height: 90px; }.slide_thumbs_cont img:first-child { margin-left: 0; }#cont_left { float: left; width: 650px; }#cont_left img {float: left; }.post_box { margin-bottom: 20px; position: relative; }.post_box h3 { margin-top: 0; }.post_box h3 a { color: #666; text-decoration: none; padding: 2px 0px;; font-size: 24px; font-family: 'Source Sans Pro', sans-serif; font-weight: 300; line-height: 35px; }.post_box h3 a:hover { background-color: #222; color: #fff; }.post_box .left { width: 389px; }.post_box .left img { display: block; width: 420px; height: 240px; }.post_box .left iframe { width: 420px; height: 240px; }.post_box .right { width: 210px; }.post_meta { border-bottom: 1px dotted #ccc; border-top: 1px solid #444; padding: 1px 6px; font-size: 11px; color: #333; width: 200px; position: absolute; bottom: 0; right: 0; }.post_meta_left { float: left; }.post_meta_right { float: right; }.post_meta_right a { color: #333; text-decoration: none; }.post_meta_right a:hover { text-decoration: none; color: #888; }#commentform input[type=submit] { background-color: #161616; color: #fff; border: 1px solid #6E6E6E; padding: 3px 5px; }.archive_title { padding: 3px 1px; border-bottom: 1px solid #ccc; border-top: 2px solid #444;  margin-bottom: 20px; text-transform: uppercase; font-size: 16px; font-family: 'Source Sans Pro', sans-serif; font-weight: 300; }.next_prev_cont { padding: 25px 0; }.next_prev_cont .left { float: left; width: 45%; }.next_prev_cont .left a { display: block; background: url('images/post_prev.png') no-repeat; background-position: top left; padding-left: 25px; min-height: 30px; }.next_prev_cont .right { float: right; width: 45%; text-align: right; }.next_prev_cont .right a { display: block; background: url('images/post_next.png') no-repeat; background-position: top right; padding-right: 25px;  min-height: 30px; }h1.single_title { margin-top: 0; font-size: 24px; font-family: 'Source Sans Pro', sans-serif; font-weight: 300;}.you_may_like { background-color: #222; color: #fff; padding: 1px 10px; font-size: 14px; margin-top: 15px; margin-bottom: 15px; }.may_like_box { float: left; margin-right: 17px; width: 205px; }.may_like_box_last{ margin-right: 0; }.may_like_box img,.may_like_box iframe { width: 205px; height: 120px; }.may_like_box h3 { font-weight: normal; font-size: 14px; }.may_like_box h3 a:hover { text-decoration: none; background-color: #222; color: #fff; }/* Sidebar */#sidebar { width: 270px; float: right; }.side_box { margin-bottom: 25px; }.side_box p { padding: 0 10px; }h3.side_title { border-bottom: 1px dotted #ccc; border-top: 2px solid #444;   padding: 3px 3px; color: #333; font-size: 18px; margin: 0 0 10px; font-weight: 300; }.side_box ul { list-style-type: none; margin: 0; padding: 0; }.side_box ul li a { padding: 7px 3px; border-bottom: 1px solid #eee; display: block; }.side_box ul li a:hover { text-decoration: none;  color: #222; }.t1_search_cont input[type=text], .t1_search_cont input[type=submit] { box-sizing: border-box;    -moz-box-sizing: border-box;    -webkit-box-sizing: border-box; height: 24px; font-family: 'Source Sans Pro', sans-serif, arial; }.t1_search_cont input[type=text] { width: 185px; }.t1_search_cont input[type=submit] { border: none; background-color: #252628; color: #90939C; width: 80px; }/* Footer */#footer { padding: 10px 0; background-color: #242628; text-align: right; margin-top: 25px; }
