@@ -691,7 +691,7 @@ function t1_func_search($args = array(), $displayComments = TRUE, $interval = ''
             <!--<INPUT TYPE="image" SRC="<?php bloginfo('stylesheet_directory'); ?>/images/search-icon.jpg" class="t1_search_icon" BORDER="0" ALT="Submit Form">-->
 
 
-	    <input type="submit" value="SEARCH" />
+	    <input type="submit" value="PROCURAR" />
 
 
             </form>
