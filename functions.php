@@ -937,7 +937,7 @@ function custom_field_excerpt() {
 	return apply_filters('the_excerpt', $text);
 }
 
-function custom_taxonomy_excerpt($term) {
+function custom_taxonomy_excerpt($term, $fallback) {
 	
 	// Se for um int, pega o termo todo do banco de dados.
 	if (is_int($term)) {
@@ -949,7 +949,12 @@ function custom_taxonomy_excerpt($term) {
 		$text = $term->description;
 		$text = strip_shortcodes( $text );
 		$text = str_replace(']]&gt;', ']]&gt;', $text);
-		$excerpt_length = 30; // 20 words
+		$excerpt_length = 30;
+		$excerpt_more = apply_filters('excerpt_more', '' . '...');
+		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+	} else {
+		$text = $fallback;
+		$excerpt_length = 30;
 		$excerpt_more = apply_filters('excerpt_more', '' . '...');
 		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
 	}
