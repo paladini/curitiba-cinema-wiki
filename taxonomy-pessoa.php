@@ -37,25 +37,112 @@
 			global $wp_query;
 			
 			// Fazendo query de custom post types == filme onde essa pessoa tenha sido referenciada.
-			$args_query = array( 
-				'post_type'=>array('filme'), 
-				'posts_per_page' => -1 
-			);
-			$args = array_merge( $wp_query->query, $args_query);
-			query_posts( $args );        
+			$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 
+			$posts = get_posts(array( 
+				'post_type'=> array('filme', 'post'),
+				'post_status' => 'publish',
+				'posts_per_page' => -1,
+				'orderby' => 'date',
+		        'order' => 'ASC',
+				'tax_query' => array(
+					'relation' => 'OR',
+					array(
+						'taxonomy' => 'pessoa',
+			            'field' => 'slug',
+			            'terms' => $term->slug
+					),
+					array(
+						'taxonomy' => 'empresa',
+			            'field' => 'slug',
+			            'terms' => $term->slug
+					)
+				)
+			));
+		
+
+/*
+			$posts = get_posts(array(
+				'post_type' => 'filme',
+				'meta_query' => array(
+					'relation' => 'OR',
+					array(
+						'key' => 'pessoa', // name of custom field
+						'value' => '"' . $term->ID . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
+						'compare' => 'LIKE'
+					),
+					array(
+						'key' => 'empresa', // name of custom field
+						'value' => '"' . $term->ID . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
+						'compare' => 'LIKE'
+					)
+				)
+			));
+*/
+			
+			echo '<pre>';
+			print_r($posts);
+			echo '</pre>';
+			die();
+
+
+
+
+// 			query_posts( $args_query );   
+			
+/*
+			$args_query = array( 
+				'post_type'=> 'filme',
+				'post_status' => 'publish',
+				'posts_per_page' => -1,
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'pessoa',
+			            'field' => 'slug',
+			            'terms' => $term->slug
+					)
+				)
+			);
+			query_posts( $args_query ); 
+*/  
+			
+// 			$args = array_merge( $wp_query->query, $args_query);
+// 			query_posts( $args );   
+     
+/*
+			$filmes = get_posts(array(
+				'post_type' => 'filme',
+				'meta_query' => array(
+					array(
+						'key' => 'pessoa', // name of custom field
+						'value' => '"' . get_the_ID() . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
+						'compare' => 'LIKE'
+					)
+				)
+			));
+*/
 
 			$x = 0;
 
 			echo '<ul>';
-			while (have_posts()) : the_post(); ?>     
+ 			// while (have_posts()) : the_post(); 
+ 			foreach ($posts as $post) {
+ 			?>
 
 
 				<div class="post_box">
-					
+					<li>
+						<h3>
+							<a href="<?php echo get_permalink( $post->ID ); ?>">
+								<?php echo get_the_title( $post->ID ); ?>
+							</a>
+						</h3>
+					</li>
+<!--
 					<li>
 						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 					</li>
+-->
 
 
 <!--
@@ -123,7 +210,9 @@
 			<?php $x++; ?>
 
 
-			<?php endwhile; ?>
+			<?php // endwhile; 
+				}
+			?>
 			</ul>
 			
 

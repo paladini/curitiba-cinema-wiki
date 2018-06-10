@@ -768,13 +768,91 @@ function atualiza_post( $data , $postarr ) {
 add_filter( 'wp_insert_post_data', 'atualiza_post', '99', 2 );
 */
 
+function return_ids_to_exclude($posts) {
+	$ids = array();
+	foreach ($posts as $post) {
+		array_push($ids, $post->ID);
+	}
+	return $ids;
+}
+
+function mass_update_posts() {
+	
+	$to_exclude = array();
+
+/*
+	while (True) {
+		
+		$args = array(	
+			'post_type'=>'filme', //whatever post type you need to update 
+			'posts_per_page'   => 10,
+			'exclude' => $to_exclude
+		);
+		$my_posts = get_posts($args);
+	
+		foreach($my_posts as $key => $my_post){
+			$meta_values = get_post_meta( $my_post->ID);
+			foreach($meta_values as $meta_key => $meta_value ){
+				update_field($meta_key, $meta_value[0], $my_post->ID);
+			}
+			array_push($to_exclude, $my_post->ID);
+			unset($meta_values);
+		}
+		
+		unset($my_posts);
+		
+	}
+*/
+	
+// 	while (True) {
+		
+/*
+		$args = array(	
+			'post_type'=>'filme', //whatever post type you need to update 
+			'posts_per_page'   => 10,
+			'exclude' => $to_exclude
+		);
+*/
+		$my_post = get_post(1884, 'filme');
+	
+		$meta_values = get_post_meta( $my_post->ID);
+		echo '<pre>';
+		print_r($meta_values);
+		echo '</pre>';
+		die();
+		
+		foreach($meta_values as $meta_key => $meta_value ){
+			update_field($meta_key, $meta_value[0], $my_post->ID);
+		}
+		array_push($to_exclude, $my_post->ID);
+			unset($meta_values);
+		
+// 	}
+	
+	unset($to_exclude);
+	
+}
+// add_action( 'init', 'mass_update_posts' );
+
 
 // Auto-update o título do post baseado no atributo 'title' (https://support.advancedcustomfields.com/forums/topic/createupdate-post-title-from-acf-fields/)
 function my_post_title_updater( $post_id ) {
+	
+	global $_POST;
+	
 
-    $my_post = array();
-    $my_post['ID'] = $post_id;
-    $my_post['status'] = 'publish';
+/*
+	if (isset($post_id) && is_numeric($post_id))
+		$my_post = get_post($post_id).to_array();
+	else
+		$my_post = get_post().to_array();
+*/
+    $my_post = array(
+	    'ID' => $post_id,
+	    'status' => 'publish'
+    );
+//     $my_post['ID'] = $post_id;
+//     $my_post['status'] = 'publish';
 
     if ( get_post_type() == 'filme' ) {
       	$my_post['post_title'] = get_field('nome_da_obra_portugues');
@@ -784,25 +862,8 @@ function my_post_title_updater( $post_id ) {
       	
       	// Configurando imagem de destaque
       	set_post_thumbnail($post_id, get_field('fotograma_ou_fotografia_still_01')['id']);
-      	
-      	// Criando taxonomia: Nomes dos Diretores
-
-/*
-      	$nomes_diretores = get_field('nome_dos_diretores');
-      	foreach ($nomes_diretores AS $t) {
-	      	$object = get_page_by_title( $t->name, $output, $post_type );
-	      	
-	      	$obj_id = array (
-		      	'post_type' => 'pessoa_fisica',
-		      	'post_title' => $t->name,
-		      	'post_status' => 'publish'
-		      	
-	      	);
-      	}
-*/
-      	
-
-		//$my_post['post_date'] = get_field('data_de_lancamento');
+      
+      
     } elseif ( get_post_type() == 'pessoa_juridica' ) {
 		$my_post['post_title'] = get_field('title');
 	} elseif ( get_post_type() == 'pessoa_fisica' ) {
@@ -823,8 +884,6 @@ function my_post_title_updater( $post_id ) {
 		set_post_thumbnail($post_id, get_field('arquivo_de_midia_logomarca')['id']);
 
     } elseif ( get_post_type() == 'evento' ) {
-// 		$my_post['post_title'] = get_field('title');
-		
 		
 		// Como o titulo do cineclube é uma taxonomia, processo é um pouco diferente.
 		$title = get_field('title');
@@ -853,7 +912,6 @@ function my_post_title_updater( $post_id ) {
 		$my_post['post_date'] = date("Y-m-d H:i:s", strtotime(get_field('data_da_primeira_sessao')));
 		
     } elseif ( get_post_type() == 'formacao' ) {
-// 		$my_post['post_title'] = get_field('title');
 		
 		// Como o titulo do cineclube é uma taxonomia, processo é um pouco diferente.
 		$title = get_field('title');
@@ -868,7 +926,6 @@ function my_post_title_updater( $post_id ) {
 		$my_post['post_date'] = date("Y-m-d H:i:s", strtotime(get_field('data_de_fundacao')));
 		
     } elseif ( get_post_type() == 'marco_legal' ) {
-// 		$my_post['post_title'] = get_field('title');
 	
 		// Como o titulo do cineclube é uma taxonomia, processo é um pouco diferente.
 		$title = get_field('title');
@@ -883,7 +940,6 @@ function my_post_title_updater( $post_id ) {
 		$my_post['post_date'] = date("Y-m-d H:i:s", strtotime(get_field('data_de_publicacao')));
 		
     } elseif ( get_post_type() == 'publicacao' ) {
-// 		$my_post['post_title'] = get_field('title');
 
 		$title = get_field('title');
 		$titulo = "";
@@ -897,20 +953,29 @@ function my_post_title_updater( $post_id ) {
 		$my_post['post_date'] = date("Y-m-d H:i:s", strtotime(get_field('data_de_fundacao')));
     } else {
 	    $my_post['post_title'] = 'Error';
-	    echo 'Error #1';
+	    die('Error #1');
     }
 
     $my_post['post_name'] = sanitize_title($my_post['post_title']);
+    wp_update_post( $my_post );
+
+/*
+    // https://support.advancedcustomfields.com/forums/topic/replacing-custom-post-type-post-title-with-an-acf/
+    if ( ! wp_is_post_revision( $post_id ) ){
 	
-    // Update the post into the database
-    // wp_update_post( $my_post );
-    
-    $post = wp_update_post( $my_post );
-	if (is_wp_error($post)) {
-	  echo 'WP ERROR: <pre>'; print_r($wp_error); echo '</pre>'; die;
+		// unhook this function so it doesn't loop infinitely
+		remove_action('save_post', 'person_update_title');
+	
+		// update the post, which calls save_post again
+		wp_update_post( $person_postdata );
+
+		// re-hook this function
+		add_action('save_post', 'person_update_title');
 	}
+*/
 
 }
+// add_filter('acf/update_value', 'my_post_title_updater', 10, 3);
 add_action('acf/save_post', 'my_post_title_updater', 20); // Roda após o ACF salvar os dados de $_POST['fields']
 
 
@@ -964,6 +1029,7 @@ function custom_taxonomy_excerpt($term, $fallback) {
 
 
 
+/*
 add_filter('pre_get_posts', 'modify_pre_query_request');
 function modify_pre_query_request($query){
     if ($query->is_main_query()){
@@ -976,6 +1042,7 @@ function modify_pre_query_request($query){
         }
     }
 }
+*/
 
 /*
 add_action( 'pre_get_posts', 'include_tags_in_search' );
