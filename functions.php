@@ -776,9 +776,9 @@ function return_ids_to_exclude($posts) {
 	return $ids;
 }
 
-function mass_update_posts() {
+// function mass_update_posts() {
 	
-	$to_exclude = array();
+// 	$to_exclude = array();
 
 /*
 	while (True) {
@@ -813,14 +813,17 @@ function mass_update_posts() {
 			'exclude' => $to_exclude
 		);
 */
-		$my_post = get_post(1884, 'filme');
+// 		$my_post = get_post(1884, 'filme');
 	
-		$meta_values = get_post_meta( $my_post->ID);
+// 		$meta_values = get_post_meta( $my_post->ID);
+/*
 		echo '<pre>';
 		print_r($meta_values);
 		echo '</pre>';
 		die();
+*/
 		
+/*
 		foreach($meta_values as $meta_key => $meta_value ){
 			update_field($meta_key, $meta_value[0], $my_post->ID);
 		}
@@ -832,6 +835,50 @@ function mass_update_posts() {
 	unset($to_exclude);
 	
 }
+
+*/
+
+function mass_update_posts() {
+	
+	$limit = 50;
+	$offset = 0;
+	while (TRUE) {
+	    $posts = new WP_Query(array(
+	            'posts_per_page'        => $limit,
+	            'offset'                => $offset,
+	            'post_type'     =>  'filme',
+	            'orderby'       =>  'title',
+	            'order'         =>  'ASC',
+	    ));
+	
+	    if (!$posts->have_posts()) break;
+	
+	    while ($posts->have_posts()) {
+			
+			$my_post = $posts->the_post();
+			$fields = get_fields($my_post->ID);
+			
+			foreach( $fields as $name => $value ) {
+				echo "Name: " . $name . "     Value: " . $value;
+			}
+			die();
+			
+			wp_update_post( $my_post );
+			
+			wp_cache_delete( $my_post->ID, 'posts' );
+			wp_cache_delete( $my_post->ID, 'post_meta' );
+			unset($my_post);
+			
+	    }
+	    
+	    unset($posts);
+	
+	    $offset += $limit;
+	} /*(TRUE)*/
+
+	
+}
+
 // add_action( 'init', 'mass_update_posts' );
 
 
@@ -840,19 +887,10 @@ function my_post_title_updater( $post_id ) {
 	
 	global $_POST;
 	
-
-/*
-	if (isset($post_id) && is_numeric($post_id))
-		$my_post = get_post($post_id).to_array();
-	else
-		$my_post = get_post().to_array();
-*/
     $my_post = array(
 	    'ID' => $post_id,
 	    'status' => 'publish'
     );
-//     $my_post['ID'] = $post_id;
-//     $my_post['status'] = 'publish';
 
     if ( get_post_type() == 'filme' ) {
       	$my_post['post_title'] = get_field('nome_da_obra_portugues');

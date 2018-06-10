@@ -80,10 +80,10 @@
 			));
 */
 			
-			echo '<pre>';
-			print_r($posts);
-			echo '</pre>';
-			die();
+// 			echo '<pre>';
+// 			print_r($posts);
+// 			echo '</pre>';
+// 			die();
 
 
 
