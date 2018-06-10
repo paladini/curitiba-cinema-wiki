@@ -964,6 +964,19 @@ function custom_taxonomy_excerpt($term, $fallback) {
 
 
 
+add_filter('pre_get_posts', 'modify_pre_query_request');
+function modify_pre_query_request($query){
+    if ($query->is_main_query()){
+        if ($query->is_tax){
+            $post_type = get_query_var('post_type');
+            if (!$post_type){
+                $post_type = array( 'post', 'filme' );
+                $query->set('post_type', $post_type);
+            }
+        }
+    }
+}
+
 /*
 add_action( 'pre_get_posts', 'include_tags_in_search' );
 function include_tags_in_search($query){
