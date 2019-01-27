@@ -50,6 +50,7 @@
 			$args_query = array( 
 				'post_type'=>array('filme'), 
 				'posts_per_page' => -1 ,
+				'fields'         => 'ids',
 				'tax_query' => array(
 			        array(
 			            'taxonomy' => $taxonomy,
@@ -65,7 +66,9 @@
 			$x = 0;
 
 // 			echo '<ul>';
-			while (have_posts()) : the_post(); ?>     
+// 			while (have_posts()) : the_post(); 
+			foreach ($posts as $post) {
+			?>     
 
 				<div class="post_box">
 
@@ -73,24 +76,24 @@
 					<div class="left">
 
 
-						<?php if(get_post_meta( get_the_ID(), 'page_featured_type', true ) == 'youtube') { ?>
+						<?php if(get_post_meta( $post->ID , 'page_featured_type', true ) == 'youtube') { ?>
 
 
 							<iframe width="560" height="315" src="http://www.youtube.com/embed/<?php echo get_post_meta( get_the_ID(), 'page_video_id', true ); ?>" frameborder="0" allowfullscreen></iframe>
 
 
-						<?php } elseif(get_post_meta( get_the_ID(), 'page_featured_type', true ) == 'vimeo') { ?>
+						<?php } elseif(get_post_meta( $post->ID , 'page_featured_type', true ) == 'vimeo') { ?>
 
 
-							<iframe src="http://player.vimeo.com/video/<?php echo get_post_meta( get_the_ID(), 'page_video_id', true ); ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=085e17" width="500" height="338" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+							<iframe src="http://player.vimeo.com/video/<?php echo get_post_meta( $post->ID , 'page_video_id', true ); ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=085e17" width="500" height="338" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 
 						<?php } else { ?>
 
 
-							<a href="<?php the_permalink(); ?>" style="display: block !important; text-align: center !important;">
+							<a href="<?php echo get_permalink( $post->ID ); // the_permalink(); ?>" style="display: block !important; text-align: center !important;">
 								<?php 
-									$src = get_the_post_thumbnail_url('post-image');
+									$src = get_the_post_thumbnail_url($post->ID, 'post-image');
 									if (empty($src)) {
 										$src = "/wp-content/uploads/2018/02/movie-icon-14032.png";
 									}
@@ -98,7 +101,7 @@
 								<div class="container-search">
 									<div class="tag-search">
 										<?php 
-											$tipo = ucfirst(get_post_type()); 
+											$tipo = ucfirst(get_post_type($post->ID)); 
 											if ($tipo == 'Page') {
 												$tipo = 'Página';
 											} elseif ($tipo == 'Post') {
@@ -109,8 +112,8 @@
 										?>
 									</div>
 									<img src="<?php echo $src; ?>" 
-										alt="<?php echo get_the_title(); ?>" 
-										title="<?php echo get_the_title(); ?>"
+										alt="<?php echo get_the_title( $post->ID ); ?>" 
+										title="<?php echo get_the_title( $post->ID ); ?>"
 										class="attachment-post-image default-featured-img"
 										style="float: none !important; display: inline !important; width: auto !important;"
 										height="240">
@@ -127,7 +130,7 @@
 					<div class="right">
 
 
-						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+						<h3><a href="<?php echo get_permalink( $post->ID ); ?>"><?php echo get_the_title( $post->ID ); ?></a></h3>
 
 
 						<p><?php echo custom_field_excerpt(); ?></p>
@@ -139,7 +142,7 @@
 							<div class="post_meta_left"><?php the_time('F d, Y'); ?></div>
 
 
-							<div class="post_meta_right"><a href="<?php the_permalink(); ?>">LEIA MAIS</a></div>
+							<div class="post_meta_right"><a href="<?php echo get_permalink( $post->ID ); ?>">LEIA MAIS</a></div>
 
 
 							<div class="clear"></div>
@@ -231,7 +234,7 @@
 			<?php $x++; ?>
 
 
-			<?php endwhile; ?>
+			<?php } ?>
 <!-- 			</ul> -->
 			
 
